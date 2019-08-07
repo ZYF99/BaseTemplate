@@ -2,7 +2,7 @@ package com.example.basetemplate.model
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import androidx.databinding.library.baseAdapters.BR
+import com.example.basetemplate.BR
 
 
 class ObservableUser : BaseObservable() {
