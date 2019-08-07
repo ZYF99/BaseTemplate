@@ -1,7 +1,7 @@
-package com.example.basetemplate.commonApi
+package com.example.common.commonApi
 
 import androidx.annotation.Nullable
-import com.example.basetemplate.commonApi.responses.AccessTokenResponse
+import com.example.common.commonApi.responses.AccessTokenResponse
 import io.reactivex.Observable
 import retrofit2.http.*
 

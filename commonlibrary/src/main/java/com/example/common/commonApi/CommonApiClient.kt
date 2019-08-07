@@ -1,6 +1,6 @@
-package com.example.basetemplate.commonApi
+package com.example.common.commonApi
 
-import com.example.basetemplate.commonApi.responses.AccessTokenResponse
+import com.example.common.commonApi.responses.AccessTokenResponse
 import io.reactivex.Observable
 
 class CommonApiClient {

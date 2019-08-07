@@ -1,4 +1,4 @@
-package com.example.basetemplate.commonApi.responses;
+package com.example.common.commonApi.responses;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -6,33 +6,32 @@ import java.io.Serializable;
 
 
 /**
- * アクセストークン取得[VIP000060]<br>
- * レスポンスクラス
+ * 获取token
  */
 public class AccessTokenResponse implements Serializable {
 
     /**
-     * アクセストークン
+     * token
      */
     @SerializedName("access_token")
     public String access_token;
     /**
-     * トークンタイプ
+     * token类型
      */
     @SerializedName("token_type")
     public String token_type;
     /**
-     * アクセストークン失効時間
+     * token失効時間
      */
     @SerializedName("expires_in")
     public long expires_in;
 
     /**
-     * コンストラクタ
+     * constructor
      *
-     * @param accessToken アクセストークン
-     * @param tokenType   トークンタイプ
-     * @param expiresIn   アクセストークン失効時間
+     * @param accessToken token
+     * @param tokenType   token类型
+     * @param expiresIn   token失效时间
      */
     public AccessTokenResponse(String accessToken,
                                String tokenType,

@@ -5,16 +5,15 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
 
-abstract class BaseActivity<T>: AppCompatActivity() {
+abstract class BaseActivity: AppCompatActivity() {
 
     //get current layout id
     abstract val contentLayoutId: Int
-    var mViewBinding: T ?= null
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(contentLayoutId)
         //初始化内部界面
         initWindows()
     }
@@ -34,14 +33,10 @@ abstract class BaseActivity<T>: AppCompatActivity() {
     }
 
     //init widget
-    open fun initWidget() {
-
-    }
+    abstract fun initWidget()
 
     //init data after initWidget
-    open fun initData() {
-
-    }
+    abstract fun initData()
 
 
     //destroy

@@ -1,10 +1,8 @@
-package com.example.basetemplate.commonApi;
+package com.example.common.commonApi;
 
 import android.media.MediaCodecInfo;
 import android.media.MediaCodecList;
 import android.media.MediaFormat;
-import jp.videomarket.android.alphalibrary.player.util.L;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -99,7 +97,6 @@ public class ApiHeader implements Serializable {
                     try {
                         MediaCodecInfo.VideoCapabilities videoCapabilities = mediaCodecInfo.getCapabilitiesForType(MediaFormat.MIMETYPE_VIDEO_AVC).getVideoCapabilities();
                         if (videoCapabilities != null && videoCapabilities.isSizeSupported(3840, 2160)) {
-                            L.d("supported 4K");
                             return true;
                         }
                     } catch (Exception e) {

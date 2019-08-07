@@ -1,4 +1,4 @@
-package com.example.basetemplate.commonApi;
+package com.example.common.commonApi;
 
 /**
  * 再生API(共通化)実行情報クラス
