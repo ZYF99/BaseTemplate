@@ -3,6 +3,9 @@ package com.example.basetemplate.ui.base
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.example.basetemplate.main.util.ErrorData
+import com.example.basetemplate.main.util.ErrorType
+import com.example.basetemplate.main.util.sendError
 import io.reactivex.SingleTransformer
 import io.reactivex.disposables.CompositeDisposable
 
@@ -37,5 +40,9 @@ abstract class BaseViewModel(application: Application) :
             }
         }
     }
+
+
+
+
 
 }

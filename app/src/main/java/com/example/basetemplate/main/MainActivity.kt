@@ -23,37 +23,38 @@ class MainActivity : BaseActivity() {
 
     private var errorDisposable: Disposable? = null
     private var errorDialog: AlertDialog? = null
-    private lateinit var bottomNavigation:BottomNavigationView
     //get layout id
     override val contentLayoutId = R.layout.activity_main
 
 
-
     @SuppressLint("ResourceType")
     override fun initWidget() {
-        bottomNavigation = findViewById(R.id.bottomNavigationView)
+
 
         supportFragmentManager.beginTransaction().apply {
             add(R.id.maincontainer, HomepageFragment())
-            add(R.id.maincontainer, FindFragment())
-            add(R.id.maincontainer, MineFragment())
+            //addToBackStack(null)
             setTransition(TRANSIT_FRAGMENT_FADE)
             commit()
         }
+
         handleError()
+
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigation.setOnNavigationItemSelectedListener {
-            supportFragmentManager.beginTransaction().apply {
 
-                when(it.itemId)  {
-                    R.id.navigation_home -> {replace(R.layout.fragment_homepage, HomepageFragment()).commit()}
-                    R.id.navigation_find -> {replace(R.layout.fragment_find, FindFragment()).commit()}
-                    R.id.navigation_mine -> {replace(R.layout.fragment_mine, MineFragment()).commit()}
+            when (it.itemId) {
+                R.id.navigation_home -> {
+                    supportFragmentManager.beginTransaction().replace(R.id.maincontainer, HomepageFragment()).commit()
                 }
-
+                R.id.navigation_find -> {
+                    supportFragmentManager.beginTransaction().replace(R.id.maincontainer, FindFragment()).commit()
+                }
+                R.id.navigation_mine -> {
+                    supportFragmentManager.beginTransaction().replace(R.id.maincontainer, MineFragment()).commit()
+                }
             }
-
             true
-
         }
     }
 
@@ -62,20 +63,27 @@ class MainActivity : BaseActivity() {
     }
 
 
-    //解决错误
-    private fun handleError(){
+    //实际'异常'处理者
+    private fun handleError() {
 
         errorDisposable = getErrorObs()
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext {
                 if (!errorDialog!!.isShowing) {
-                    when (it.errorType) {
+                    errorDialog = when (it.errorType) {
                         ErrorType.NO_WIFI -> showNoWifiDialog(this) {}
                         else -> showUnexpectedDialog(this)
                     }
                 }
             }.subscribe({}, { Timber.e(it) })
 
+    }
+
+    override fun onDestroy() {
+        errorDialog?.dismiss()
+        errorDialog = null
+        errorDisposable?.dispose()
+        super.onDestroy()
     }
 
 
